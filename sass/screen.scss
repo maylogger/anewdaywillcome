@@ -66,8 +66,8 @@ body {
   border: 1px dashed black;
   border-width: 1px 0;
   height: 36px;
-  background: url(/images/slogan.png) repeat-x -600% center;
-  background-image: none, url(/images/slogan.svg);
+  background: image-url("slogan.png") repeat-x -600% center;
+  background-image: none, image-url("slogan.svg");
 }
 
 .text {
