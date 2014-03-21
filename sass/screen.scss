@@ -1,6 +1,144 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+// vertical rhythm
+$base-font-size: 16px;
+$base-line-height: 24px;
+$relative-font-sizing: false;
 
 @import "compass/reset";
+@import "compass";
+@import "susy";
+
+$desktop: 30em 12;
+
+@mixin replace-text-with-svg($image-name) {
+  display: block;
+  @include replace-text-with-dimensions("#{$image-name}.png");
+  background-image: none, image-url("#{$image-name}.svg");
+  width: auto;
+  height: 0px;
+  padding-top: 18.631178707%;
+  @include background-size(cover);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  @include trailer(1);
+  @include at-breakpoint($desktop) {
+    max-width: 50%;
+    &.a {
+      float: right;
+      margin: 0 0 1em 1em;
+    }
+    &.b {
+      float: left;
+      margin: 0 1em 1em 0;
+    }
+  }
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.header {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 526px;
+  @include at-breakpoint($desktop) {
+    padding: 0 5em;
+  }
+}
+
+.logo {
+  margin: 0 atuo;
+  @include replace-text-with-svg("logo");
+  @include leader(3);
+  @include trailer(2);
+}
+
+.ribbon {
+  @include trailer(1);
+  border: 1px solid black;
+  border-width: 1px 0;
+  padding: 5px 0;
+}
+.ribbon-inner {
+  border: 1px dashed black;
+  border-width: 1px 0;
+  height: 36px;
+  background: url(/images/slogan.png) repeat-x -600% center;
+  background-image: none, url(/images/slogan.svg);
+}
+
+.text {
+  margin: 0 2em;
+  .text-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    @include trailing-border(1px, 1.5);
+    @include trailer(1);
+    @include at-breakpoint($desktop) {
+      @include columns(2);
+      @include column-gap(2em);
+    }
+  }
+  p {
+    @include adjust-font-size-to(15px);
+    @include trailer(1);
+  }
+  h3 {
+    @include adjust-font-size-to(15px);
+    @include trailer(1);
+    font-weight: bold;
+  }
+  @include at-breakpoint($desktop) {
+    @include leader(2);
+    p {
+      @include adjust-font-size-to(13px);
+    }
+  }
+}
+
+.download {
+  padding: 0 2em;
+  max-width: 600px;
+  margin: 0 auto;
+  @include trailer(1);
+  @include pie-clearfix;
+  h2 {
+    text-align: center;
+    @include adjust-font-size-to(16px);
+    @include trailer(1);
+  }
+  .download-pdf {
+    a {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      @include padding-leader(.5);
+      @include padding-trailer(.5);
+      @include adjust-font-size-to(15px);
+      @include border-radius(4px);
+      border: 1px solid black;
+      text-decoration: none;
+      color: black;
+      max-width: 20em;
+
+      @include trailer(.5);
+    }
+    a:hover {
+      background: black;
+      color: white;
+      text-decoration: none;
+    }
+    p {
+      @include adjust-font-size-to(13px);
+      text-align: center;
+      @include trailer(1);
+    }
+    @include at-breakpoint($desktop) {
+      @include span-columns(6);
+      @include nth-omega();
+    }
+  }
+}
