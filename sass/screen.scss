@@ -82,12 +82,15 @@ html, body {
   border: 1px solid black;
   border-width: 1px 0;
   padding: 5px 0;
+  &.last {
+    margin-bottom: 0;
+  }
 }
 .ribbon-inner {
   border: 1px dashed black;
   border-width: 1px 0;
   height: 36px;
-  background: image-url("slogan.png") repeat-x -600% center;
+  background: image-url("slogan.png") repeat-x -500% center;
   background-image: none, image-url("slogan.svg");
 }
 
@@ -95,23 +98,29 @@ html, body {
   max-width: 800px;
   margin: 0 auto;
   @include trailing-border(1px, 1.5);
-  @include trailer(1);
+  @include trailer(2);
   p {
     @include adjust-font-size-to(15px);
     @include trailer(1);
   }
   h3 {
-    @include adjust-font-size-to(15px);
+    letter-spacing: 1px;
+    @include adjust-font-size-to(18px);
+    @include leader(2);
     @include trailer(1);
     font-weight: bold;
+    text-align: center;
   }
   @include at-breakpoint($desktop) {
     @include leader(2);
+    h3 {
+      @include adjust-font-size-to(18px, 1.5);
+    }
   }
 }
 
 .download {
-  @include trailer(1);
+  @include trailer(2);
   @include pie-clearfix;
   h2 {
     text-align: center;
@@ -131,7 +140,7 @@ html, body {
       text-decoration: none;
       color: black;
       max-width: 20em;
-      @include trailer(.5);
+      @include trailer(1/4);
     }
     a:hover {
       background: black;
@@ -142,6 +151,9 @@ html, body {
       @include adjust-font-size-to(13px);
       text-align: center;
       @include trailer(1);
+      b {
+        font-family: monospace;
+      }
     }
     @include at-breakpoint($desktop) {
       @include span-columns(3);
