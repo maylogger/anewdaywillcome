@@ -7,7 +7,12 @@ $relative-font-sizing: false;
 @import "compass";
 @import "susy";
 
-$desktop: 30em 12;
+$total-columns  : 4;
+$column-width   : 72px;
+$gutter-width   : 24px;
+$grid-padding   : $gutter-width;
+
+$desktop: 30em 6;
 
 @mixin replace-text-with-svg($image-name) {
   display: block;
@@ -16,7 +21,7 @@ $desktop: 30em 12;
   width: auto;
   height: 0px;
   padding-top: 18.631178707%;
-  @include background-size(cover);
+  @include background-size(contain);
 }
 
 img {
@@ -36,24 +41,40 @@ img {
   }
 }
 
-body {
+html, body {
   font-family: sans-serif;
+  height: 100%;
+}
+
+.container {
+  @include container( $total-columns, $desktop );
+  position: relative;
+  @include pie-clearfix;
 }
 
 .header {
-  margin: 0 auto;
-  padding: 0 2em;
-  max-width: 526px;
-  @include at-breakpoint($desktop) {
-    padding: 0 5em;
+  @include pie-clearfix;
+  height: 80%;
+  .container {
+    height: 100%;
+    background: image-url("newday.jpg") no-repeat center center;
+    @include background-size(cover);
   }
 }
 
 .logo {
-  margin: 0 atuo;
+  margin: 0 auto;
   @include replace-text-with-svg("logo");
-  @include leader(3);
-  @include trailer(2);
+  position: absolute;
+  top: 22.5%;
+  left: 0;
+  width: 100%;
+  @include at-breakpoint($desktop) {
+    // position: static;
+    margin-top: 0;
+    // @include leader(3);
+    // @include trailer(2);
+  }
 }
 
 .ribbon {
@@ -71,17 +92,10 @@ body {
 }
 
 .text {
-  margin: 0 2em;
-  .text-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    @include trailing-border(1px, 1.5);
-    @include trailer(1);
-    @include at-breakpoint($desktop) {
-      @include columns(2);
-      @include column-gap(2em);
-    }
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  @include trailing-border(1px, 1.5);
+  @include trailer(1);
   p {
     @include adjust-font-size-to(15px);
     @include trailer(1);
@@ -93,16 +107,10 @@ body {
   }
   @include at-breakpoint($desktop) {
     @include leader(2);
-    p {
-      @include adjust-font-size-to(13px);
-    }
   }
 }
 
 .download {
-  padding: 0 2em;
-  max-width: 600px;
-  margin: 0 auto;
   @include trailer(1);
   @include pie-clearfix;
   h2 {
@@ -123,7 +131,6 @@ body {
       text-decoration: none;
       color: black;
       max-width: 20em;
-
       @include trailer(.5);
     }
     a:hover {
@@ -137,7 +144,7 @@ body {
       @include trailer(1);
     }
     @include at-breakpoint($desktop) {
-      @include span-columns(6);
+      @include span-columns(3);
       @include nth-omega();
     }
   }
