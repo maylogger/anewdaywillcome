@@ -42,8 +42,9 @@ img {
 }
 
 html, body {
-  font-family: sans-serif;
   height: 100%;
+  font-family: "AvenirNext-Regular", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
 }
 
 .container {
@@ -112,6 +113,7 @@ html, body {
     text-align: center;
   }
   @include at-breakpoint($desktop) {
+    // text-align: center;
     @include leader(2);
     h3 {
       @include adjust-font-size-to(18px, 1.5);
@@ -120,7 +122,7 @@ html, body {
 }
 
 .download {
-  @include trailer(2);
+  @include trailer(1);
   @include pie-clearfix;
   h2 {
     text-align: center;
@@ -159,5 +161,56 @@ html, body {
       @include span-columns(3);
       @include nth-omega();
     }
+  }
+}
+
+.share {
+  text-align: center;
+  a {
+    @include inline-block;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: .5em 2em;
+    text-decoration: none;
+    @include adjust-font-size-to(15px);
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  @include leader(2);
+  @include trailer(2);
+  .download + & {
+    @include leader(1);
+  }
+}
+
+.foot {
+  padding: 0 2em;
+  text-align: center;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  @include pie-clearfix;
+  p {
+    @include trailer(.5);
+    @include leader(.5);
+  }
+  .banner {
+    @include inline-block;
+    padding: 0;
+    margin: 0 auto;
+    img {
+      @include reset-box-model;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  @include adjust-font-size-to(12px, 3/4);
+  @include at-breakpoint($desktop) {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+  a {
+    @include link-colors(black);
   }
 }
